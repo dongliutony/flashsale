@@ -3,7 +3,7 @@ package org.seckill.service.impl;
 import org.apache.commons.collections.MapUtils;
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
-import org.omg.CORBA.DATA_CONVERSION;
+//import org.omg.CORBA.DATA_CONVERSION;
 import org.seckill.bean.Seckill;
 import org.seckill.bean.SuccessKilled;
 import org.seckill.dao.SeckillDao;

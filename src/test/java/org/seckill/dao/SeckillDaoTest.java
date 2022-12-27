@@ -18,6 +18,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:spring/spring-dao.xml"})
 public class SeckillDaoTest {
+    //注入Dao实现类依赖
     @Autowired
     private SeckillDao seckillDao;
 

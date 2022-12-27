@@ -12,7 +12,10 @@ import java.util.List;
 
 /**
  * @Author:陈浩杰
- * @description: 定义接口原则：方法定义粒度，参数（简练），返回类型（友好）
+ * @description: 定义接口原则：站在"使用者"的角度去设计接口：
+ *      1. 方法定义粒度，如"execute flashsale"，应当关注传入的参数，而不是怎么去减库存、怎么记录用户购买行为等（实现）
+ *      2. 参数（简练），
+ *      3. 返回类型（return的类型要友好/也可以抛异常）
  * @Date:Created in 21:43 2018/5/21
  */
 public interface SeckillService {

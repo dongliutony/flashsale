@@ -7,8 +7,8 @@ CREATE TABLE seckill(
   `seckill_id` bigint NOT NULL AUTO_INCREMENT COMMENT '商品库存id',
   `name` varchar (120) NOT NULL COMMENT '商品名称',
   `number` int NOT NULL COMMENT '库存数量',
-  `start_time` timestamp NOT NULL COMMENT '秒杀开启时间',
-  `end_time` timestamp NOT NULL COMMENT '秒杀结束时间',
+  `start_time` timestamp NOT NULL DEFAULT '2021-11-10 23:59:59' COMMENT '秒杀开启时间',
+  `end_time` timestamp NOT NULL DEFAULT '2021-11-11 23:59:59' COMMENT '秒杀结束时间',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY(seckill_id),
   key idx_start_time(start_time),
@@ -31,7 +31,7 @@ CREATE TABLE success_killed(
   `seckill_id` bigint NOT NULL COMMENT '秒杀商品id',
   `user_phone` bigint NOT NULL COMMENT '用户手机号',
   `state` bigint NOT NULL DEFAULT -1 COMMENT '状态表示：-1：无效，0：成功，1：已付款',
-  `create_time` timestamp NOT NULL COMMENT '创建时间',
+  `create_time` timestamp NOT NULL DEFAULT '2021-11-11 23:59:59' COMMENT '创建时间',
   PRIMARY KEY (seckill_id,user_phone),
   key idx_create_time(create_time)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='秒杀成功明细表';
