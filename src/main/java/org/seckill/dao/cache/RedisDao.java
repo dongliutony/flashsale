@@ -1,7 +1,7 @@
 package org.seckill.dao.cache;
 
 import com.dyuproject.protostuff.LinkedBuffer;
-import com.dyuproject.protostuff.ProtobufIOUtil;
+import com.dyuproject.protostuff.ProtostuffIOUtil;
 import com.dyuproject.protostuff.runtime.RuntimeSchema;
 import org.seckill.bean.Seckill;
 import org.slf4j.Logger;
@@ -36,7 +36,8 @@ public class RedisDao {
                     //空对象
                     Seckill seckill = schema.newMessage();
                     //seckill被反序列化
-                    ProtobufIOUtil.mergeFrom(bytes,seckill,schema);
+                    ProtostuffIOUtil.mergeFrom(bytes,seckill,schema);
+                    return seckill;
                 }
             } finally {
                 jedis.close();
@@ -53,7 +54,7 @@ public class RedisDao {
             //set Object->序列化->bytes[]
             try {
                 String key = "seckill:"+seckill.getSeckillId();
-                byte[] bytes = ProtobufIOUtil.toByteArray(seckill,schema,
+                byte[] bytes = ProtostuffIOUtil.toByteArray(seckill,schema,
                         LinkedBuffer.allocate(LinkedBuffer.DEFAULT_BUFFER_SIZE));
 
                 //缓存超时

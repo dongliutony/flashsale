@@ -57,6 +57,7 @@ public class SeckillServiceImpl implements SeckillService {
 
     @Override
     public Exposer exportSeckillUrl(long seckillId) {
+        // 缓存优化 Redis
         Seckill seckill = redisDao.getSeckill(seckillId);
         if (seckill == null){
             seckill = seckillDao.queryById(seckillId);
@@ -89,6 +90,7 @@ public class SeckillServiceImpl implements SeckillService {
         //执行秒杀逻辑：减库存 + 记录购买行为
         Date nowTime = new Date();
         try {
+            // !!!并发优化：先insert，在update，减少行级锁的持有时间
            /* int updateCount = seckillDao.reduceNumber(seckillId, nowTime);
             if (updateCount <= 0) {
                 //没有更新到记录
